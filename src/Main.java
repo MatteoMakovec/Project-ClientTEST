@@ -11,18 +11,69 @@ public class Main {
         else {
             serverInetAddress = InetAddress.getLocalHost();
         }
-        Socket socket = new Socket(serverInetAddress, 10000);
-        BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-        for (int i = 0; i < 10; i++) {
+
+        Socket socket1 = new Socket(serverInetAddress, 10000);
+        /*
+        Socket socket2 = new Socket(serverInetAddress, 10000);
+        Socket socket3 = new Socket(serverInetAddress, 10000);
+        Socket socket4 = new Socket(serverInetAddress, 10000);
+        Socket socket5 = new Socket(serverInetAddress, 10000);
+        */
+
+        BufferedReader br1 = new BufferedReader(new InputStreamReader(socket1.getInputStream()));
+        BufferedWriter bw1 = new BufferedWriter(new OutputStreamWriter(socket1.getOutputStream()));
+        /*
+        BufferedReader br2 = new BufferedReader(new InputStreamReader(socket2.getInputStream()));
+        BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(socket2.getOutputStream()));
+        BufferedReader br3 = new BufferedReader(new InputStreamReader(socket3.getInputStream()));
+        BufferedWriter bw3 = new BufferedWriter(new OutputStreamWriter(socket3.getOutputStream()));
+        BufferedReader br4 = new BufferedReader(new InputStreamReader(socket4.getInputStream()));
+        BufferedWriter bw4 = new BufferedWriter(new OutputStreamWriter(socket4.getOutputStream()));
+        BufferedReader br5 = new BufferedReader(new InputStreamReader(socket5.getInputStream()));
+        BufferedWriter bw5 = new BufferedWriter(new OutputStreamWriter(socket5.getOutputStream()));
+        */
+
+        for (int i = 0; i < 5; i++) {
             String sent = String.format("Hello world n. %d!", i);
-            bw.write(sent + System.lineSeparator());
-            bw.flush();
-            String received = br.readLine();
+            bw1.write(sent + System.lineSeparator());
+            bw1.flush();
+
+            /*
+            bw2.write(sent + System.lineSeparator());
+            bw2.flush();
+            bw3.write(sent + System.lineSeparator());
+            bw3.flush();
+            bw4.write(sent + System.lineSeparator());
+            bw4.flush();
+            bw5.write(sent + System.lineSeparator());
+            bw5.flush();
+            */
+
+            String received = br1.readLine();
             System.out.printf("Sent: %s%nReceived: %s%n", sent, received);
         }
-        bw.write("bye" + System.lineSeparator());
-        bw.flush();
-        socket.close();
+
+
+
+        bw1.write("bye" + System.lineSeparator());
+        bw1.flush();
+        /*
+        bw2.write("bye" + System.lineSeparator());
+        bw2.flush();
+        bw3.write("bye" + System.lineSeparator());
+        bw3.flush();
+        bw4.write("bye" + System.lineSeparator());
+        bw4.flush();
+        bw5.write("bye" + System.lineSeparator());
+        bw5.flush();
+        */
+
+        socket1.close();
+        /*
+        socket2.close();
+        socket3.close();
+        socket4.close();
+        socket5.close();
+        */
     }
 }
