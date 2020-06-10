@@ -4,7 +4,7 @@ import java.net.Socket;
 public class ThreadClient extends Thread {
     Socket socket;
 
-    public ThreadClient(Socket socket) throws IOException {
+    public ThreadClient(Socket socket) {
         this.socket = socket;
     }
 
@@ -22,9 +22,14 @@ public class ThreadClient extends Thread {
             }
             bw.write("bye" + System.lineSeparator());
             bw.flush();
-            socket.close();
         } catch (IOException e) {
             System.err.printf("IO error: %s\n", e);
+        } finally {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
