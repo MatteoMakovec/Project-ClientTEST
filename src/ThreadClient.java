@@ -13,16 +13,14 @@ public class ThreadClient extends Thread {
             BufferedReader brInput = new BufferedReader(new InputStreamReader(System.in));
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-
             while(true){
                 String toSend = brInput.readLine();
                 bw.write(toSend + System.lineSeparator());
                 bw.flush();
                 String received = br.readLine();
-                System.out.printf("Sent: %s%nReceived: %s\n\n", toSend, received);
+                System.out.printf("%s\n", received);
                 if(socket.isClosed() || received == null) break;
             }
-
         } catch (IOException e) {
             System.err.printf("IO error: %s\n", e);
         } finally {
